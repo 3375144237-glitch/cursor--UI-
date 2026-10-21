@@ -19,32 +19,42 @@ def crop_status_bar(image: np.ndarray, device: Device, height_pt: Optional[float
     return image[cut:, :]
 
 
+MODES = {"REM": "REM", "A": "REM", "PX": "PX", "B": "PX"}
+
+
 def resize_to_design(
     image: np.ndarray,
     device: Device,
     design_width: int,
-    mode: str = "A",
+    mode: str = "REM",
 ) -> np.ndarray:
     """
-    mode A: 等比适配，整页按屏幕宽度缩放（间距字号随屏幕变化）。
-    mode B: 固定尺寸适配，字号间距按设计值不变，只有通栏元素被拉伸。
+    REM：整页等比缩放到设计稿宽度（如 720px）。
+    PX ：按设备自身分辨率缩放到该设备的 2 倍图（宽 = 设备点宽 × 设计稿倍数），
+         例如 iPhone XR 414pt → 828px，iPhone 15 Pro 393pt → 786px。
+         截图本身已是 2 倍图时不缩放。
     """
-    if mode == "A":
+    mode = MODES.get(mode.upper())
+    if mode == "REM":
         factor = design_width / image.shape[1]
-    elif mode == "B":
+    elif mode == "PX":
         factor = design_scale(design_width) / device.scale
     else:
-        raise ValueError("mode 只能是 A 或 B")
+        raise ValueError("mode 只能是 REM 或 PX")
 
+    if abs(factor - 1) < 1e-6:
+        return image
+    width = int(round(image.shape[1] * factor))
     height = int(round(image.shape[0] * factor))
-    return cv2.resize(image, (design_width, height), interpolation=cv2.INTER_AREA)
+    interp = cv2.INTER_AREA if factor < 1 else cv2.INTER_CUBIC
+    return cv2.resize(image, (width, height), interpolation=interp)
 
 
 def normalize(
     screenshot: str | Path,
     device: Device,
     design_width: int,
-    mode: str = "A",
+    mode: str = "REM",
     status_bar_pt: Optional[float] = None,
 ) -> tuple[np.ndarray, dict]:
     image = cv2.imread(str(screenshot), cv2.IMREAD_COLOR)

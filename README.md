@@ -31,7 +31,7 @@ python3 -m venv .venv
   --device screenshots/device/首页_iPhone15Pro.png \
   --model "iPhone 15 Pro" \
   --page 首页 \
-  --mode A
+  --mode PX
 ```
 
 参数：
@@ -39,8 +39,8 @@ python3 -m venv .venv
 | 参数 | 说明 |
 |---|---|
 | `--model` | 机型名，见 `config/device_profiles.yaml` |
-| `--mode A` | 整体等比缩放（字号间距随屏幕变化） |
-| `--mode B` | 固定尺寸适配（字号间距不变，只拉伸通栏元素） |
+| `--mode REM` | 等比缩放到设计稿宽度（如 720px） |
+| `--mode PX` | 缩放到设备自身的 2 倍图（如 iPhone XR 828px、iPhone 15 Pro 786px），截图已是 2 倍图则不缩放 |
 | `--threshold` | 色差阈值，默认 28；越小越敏感、误报越多 |
 | `--status-bar` | 状态栏高度（点），默认 iOS 59 / 安卓 24 |
 | `--no-align` | 跳过自动对齐 |

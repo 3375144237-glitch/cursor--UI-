@@ -3,7 +3,7 @@
 
 用法：
   .venv/bin/python check_ui.py --design 设计稿.png --device 实机.png \
-      --model "iPhone 15 Pro" --page 首页 --mode A
+      --model "iPhone 15 Pro" --page 首页 --mode REM
 """
 from __future__ import annotations
 
@@ -26,7 +26,8 @@ def main() -> int:
     p.add_argument("--device", required=True, help="手机截图路径")
     p.add_argument("--model", required=True, help="机型，如 'iPhone 15 Pro' 或 'Pixel 8'")
     p.add_argument("--page", default="页面", help="页面名称，写入报告")
-    p.add_argument("--mode", choices=["A", "B"], default="A", help="A=整体等比缩放，B=固定尺寸适配")
+    p.add_argument("--mode", choices=["REM", "PX"], default="REM",
+                   help="REM=等比缩放到设计稿宽度；PX=缩放到设备自身的2倍图")
     p.add_argument("--threshold", type=int, default=28, help="色差阈值 0-255，越小越敏感")
     p.add_argument("--status-bar", type=float, default=None, help="状态栏高度（点），默认按平台")
     p.add_argument("--no-align", action="store_true", help="跳过自动对齐")

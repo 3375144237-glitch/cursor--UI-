@@ -1,0 +1,26 @@
+# 麦奇说 UI 验收配置
+figma_file: kYoNWHRIkZk9M2XM0gheNH
+design_width: 720        # 设计稿 2 倍图
+implementation: PX       # PX：截图缩放到设备自身 2 倍图；REM：等比缩放到 720
+device: iPhone XR        # 828x1792，本身就是 2 倍图，不缩放
+screenshot_dir: ~/Desktop/麦奇说验收（测试-手机截图）
+
+# 截图 → Figma 画板。status: 已确认 / 待确认 / 无设计稿 / 排除
+pages:
+  - {shot: "IMG_1295 1.png", node: "1:3631", name: 首页-单词快拼1,              status: 待确认}
+  - {shot: "IMG_1297 1.png", node: "1:3404", name: 首页-单词运用,               status: 待确认}
+  - {shot: "IMG_1300 1.png", node: "1:1015", name: 开始,                        status: 待确认, note: 也可能是“联赛页”}
+  - {shot: "IMG_1302 1.png", node: "1:1272", name: 结束,                        status: 待确认, note: 也可能是“联赛页”}
+  - {shot: "IMG_1304 2.png", node: "1:658",  name: 记录,                        status: 待确认}
+  - {shot: "IMG_1305 1.png", node: "1:800",  name: 什么是联赛,                  status: 待确认, note: 页面顶部}
+  - {shot: "IMG_1306 1.png", node: "1:800",  name: 什么是联赛,                  status: 待确认, note: 页面滚动后的下半部分}
+  - {shot: "IMG_1307 1.png", node: "1:4919", name: 学习统计,                    status: 待确认, note: 页面滚动后的下半部分}
+  - {shot: "IMG_1309 1.png", node: "1:6052", name: 任务列表弹窗-只弹出已完成的, status: 待确认}
+  - {shot: "IMG_1312 1.png", node: "1:3206", name: 我的,                        status: 待确认}
+  - {shot: "IMG_1314 1.png", node: "1:4173", name: 今日计划已学完-按钮弹窗,     status: 待确认}
+  - {shot: "IMG_1317 1.png", node: "1:4477", name: 单词快拼-学习环节结果页,     status: 待确认}
+  - {shot: "IMG_1318 1.png", node: "1:4618", name: 分享页,                      status: 待确认}
+  - {shot: "IMG_1347 1.png", node: "1:4140", name: 修改计划,                    status: 待确认}
+  - {shot: "IMG_1353 1.png", node: "1:4184", name: 会员弹窗,                    status: 待确认}
+  - {shot: "IMG_1368 1.png", node: null,     name: 加载异常,                    status: 无设计稿}
+  - {shot: "675 1.png",      node: null,     name: 未知,                        status: 排除, note: 900x1413，不是 iPhone XR 截图}

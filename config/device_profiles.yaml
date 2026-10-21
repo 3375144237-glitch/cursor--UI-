@@ -21,6 +21,10 @@ ios:
   iPhone 11 Pro Max: {width: 1242, height: 2688, point: 414x896, scale: 3}
   iPhone 11 Pro:     {width: 1125, height: 2436, point: 375x812, scale: 3}
   iPhone 11:         {width: 828,  height: 1792, point: 414x896, scale: 2}
+  iPhone XR:         {width: 828,  height: 1792, point: 414x896, scale: 2}
+  iPhone XS Max:     {width: 1242, height: 2688, point: 414x896, scale: 3}
+  iPhone XS:         {width: 1125, height: 2436, point: 375x812, scale: 3}
+  iPhone X:          {width: 1125, height: 2436, point: 375x812, scale: 3}
   iPhone SE (3rd):   {width: 750,  height: 1334, point: 375x667, scale: 2}
 
 android:

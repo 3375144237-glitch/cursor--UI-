@@ -52,11 +52,24 @@ def test_normalize_mode_a_scales_whole_page():
     assert abs(out.shape[0] - round(2379 * 720 / 1179)) <= 1
 
 
-def test_normalize_mode_b_keeps_points():
+def test_px_mode_iphone_xr_is_already_2x():
+    device = find_device("iPhone XR", screenshot_width=828)
+    screenshot = np.full((1792, 828, 3), 255, dtype=np.uint8)
+    out, _ = normalize(_write(screenshot), device, design_width=720, mode="PX", status_bar_pt=0)
+    assert out.shape[:2] == (1792, 828)
+
+
+def test_px_mode_3x_device_scales_to_its_own_2x():
     device = find_device("iPhone 15 Pro", screenshot_width=1179)
     screenshot = np.full((2556, 1179, 3), 255, dtype=np.uint8)
-    # 2倍设计稿 / 3倍屏 = 2/3，360pt 页宽 -> 720px
-    out, _ = normalize(_write(screenshot), device, design_width=720, mode="B")
+    out, _ = normalize(_write(screenshot), device, design_width=720, mode="PX", status_bar_pt=0)
+    assert out.shape[1] == 786  # 393pt × 2，而不是 720
+
+
+def test_rem_mode_scales_to_design_width():
+    device = find_device("iPhone XR", screenshot_width=828)
+    screenshot = np.full((1792, 828, 3), 255, dtype=np.uint8)
+    out, _ = normalize(_write(screenshot), device, design_width=720, mode="REM", status_bar_pt=0)
     assert out.shape[1] == 720
 
 
