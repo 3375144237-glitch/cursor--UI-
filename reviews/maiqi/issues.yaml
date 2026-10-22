@@ -1,0 +1,33 @@
+# 麦奇说走查问题记录
+# box: 问题在【实机截图】上的位置 [x, y, 宽, 高]，单位为截图像素（iPhone XR 828x1792）
+# design_offset: 实机坐标 → 设计稿坐标的偏移 [dx, dy]，默认 [0, -12]
+#   （XR 状态栏比设计稿高 12px；PX 适配下右对齐元素 dx=-108，居中元素 dx=-54）
+# priority: 高 / 中 / 低     status: 待修复 / 修复中 / 已修复 / 不修复 / 待确认
+project: 麦奇说
+device: iPhone XR
+implementation: PX
+screenshot_dir: ~/Desktop/麦奇说验收（测试-手机截图）
+
+pages:
+  - shot: "IMG_1297 1.png"
+    page: 首页-单词运用
+    node: "1:3404"
+    issues:
+      - box: [700, 448, 108, 672]
+        desc: 学习卡片右侧功能 tab 与设计稿不一致：设计稿共 4 个 tab（顶部有紫色"统计"tab），实机只有 3 个，缺少紫色统计 tab；当前选中 tab 的图标设计稿为绿色，实机为紫色
+        priority: 中
+        note: 如为功能配置差异请产品确认
+        design_offset: [-108, -12]   # 右侧元素：PX 适配下整体右移 108px
+      - box: [560, 846, 96, 70]
+        design_offset: [-108, -12]
+        desc: 进度环"40%"中百分号字号偏小：设计稿 % 与数字等高（约 20px），实机 % 仅约 14px 高
+        priority: 低
+      - box: [56, 1178, 716, 166]
+        desc: 文案与设计稿不一致：标题设计稿为"练习进度"，实机为"学习进度"；"累计练习单词数"实机为"累计已学单词数"
+        priority: 低
+        note: 需确认以哪版文案为准
+      - box: [636, 1356, 172, 92]
+        design_offset: [-108, -12]
+        desc: 悬浮"测试"按钮遮挡学习进度卡片的百分比数值（0.0%）
+        priority: 低
+        note: 如为测试包调试入口、正式包不显示可忽略
